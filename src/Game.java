@@ -1,28 +1,55 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class Game {
 
-    public static void main (String[] args){
-        Player player;
-        Opponent opponent;
-        Board zeroBoard;
+    public static void main (String[] args) {
+        Player player = new Player();
+        Opponent opponent = new Opponent();
+        Board zeroBoard = new Board();
         Scanner rowScan = new Scanner(System.in);
-        System.out.println("Guess a row");
-        int row = rowScan.nextInt();
 
-        Scanner colScan = new Scanner(System.in);
-        System.out.println("Guess a column:");
-        int col = colScan.nextInt();
+        while (!opponent.evilBoard.board.equals(zeroBoard.board) && !player.playerBoard.board.equals(zeroBoard.board)) {
+            System.out.println("Guess a row (between 0 and 7 inclusive)");
+            int row = rowScan.nextInt();
 
-        if (opponent.evilBoard.board[row][col] != 0){
+            Scanner colScan = new Scanner(System.in);
+            System.out.println("Guess a column (between 0 and 7 inclusive)");
+            int col = colScan.nextInt();
+
+            playerTurn(opponent, zeroBoard, row, col);
+            oppoTurn(player, zeroBoard);
+        }
+    }
+
+    public static void playerTurn(Opponent opponent, Board zeroBoard, int row, int col) {
+        if (opponent.evilBoard.board[row][col] != 0) {
             System.out.println("Hit!");
             opponent.evilBoard.board[row][col] = 0;
-            if (opponent.evilBoard.board.equals(this.zeroBoard.board)){
+            if (opponent.evilBoard.board.equals(zeroBoard.board)) {
                 System.out.println("You win!");
             }
         } else {
             System.out.println("Miss!");
         }
-        System.out.println(opponent.evilBoard.board);
+        System.out.println(opponent.evilBoard.toString());
+    }
+
+    public static void oppoTurn(Player player, Board zeroBoard) {
+        System.out.println("Opponent's turn!");
+        Random rand = new Random();
+        int row = rand.nextInt(8);
+        int col = rand.nextInt(8);
+
+        if (player.playerBoard.board[row][col] != 0) {
+            System.out.println("You're hit!");
+            player.playerBoard.board[row][col] = 0;
+            if (player.playerBoard.board.equals(zeroBoard.board)) {
+                System.out.println("Opponent wins!");
+            }
+        } else {
+            System.out.println("Opponent missed!");
+        }
+        System.out.println(player.playerBoard.toString());
     }
 }
