@@ -32,7 +32,7 @@ public class Game {
         } else {
             System.out.println("Miss!");
         }
-        System.out.println(opponent.evilBoard.toString());
+        opponent.evilBoard.printBoard();
     }
 
     public static void oppoTurn(Player player, Board zeroBoard) {
@@ -50,6 +50,6 @@ public class Game {
         } else {
             System.out.println("Opponent missed!");
         }
-        System.out.println(player.playerBoard.toString());
+        player.playerBoard.printBoard();
     }
 }

@@ -16,24 +16,22 @@ public class Board {
 
     public void placeShips(){
         Random rand = new Random();
-        for (int i = 0; i < 4; i++){
+        for (int i = 1; i < 5; i++){
             int row = rand.nextInt(8);
             int col = rand.nextInt(8);
             this.board[row][col] = i;
         }
     }
 
-    public String toString() {
-        String boardStr = "";
-        for (int i = 0; i < 9; i++){
+    public void printBoard() {
+        for (int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
-                if (i < 7){
-                    boardStr += this.board[i][j];
+                if (j == 0 && i > 0){
+                    System.out.println(this.board[i][j]);
                 } else {
-                    boardStr += "\n";
+                    System.out.print(this.board[i][j]);
                 }
             }
         }
-        return boardStr;
     }
 }
