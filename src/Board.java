@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Random;
 
 public class Board {
@@ -26,12 +25,13 @@ public class Board {
     public void printBoard() {
         for (int i = 0; i < 8; i++){
             for (int j = 0; j < 8; j++){
-                if (j == 0 && i > 0){
+                if (j == 7){
                     System.out.println(this.board[i][j]);
                 } else {
                     System.out.print(this.board[i][j]);
                 }
             }
         }
+        System.out.println();
     }
 }

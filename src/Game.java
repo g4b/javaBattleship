@@ -9,7 +9,7 @@ public class Game {
         Board zeroBoard = new Board();
         Scanner rowScan = new Scanner(System.in);
 
-        while (!opponent.evilBoard.board.equals(zeroBoard.board) && !player.playerBoard.board.equals(zeroBoard.board)) {
+        while (!opponent.evilBoard.board.equals(zeroBoard.board) || !player.playerBoard.board.equals(zeroBoard.board)) {
             System.out.println("Guess a row (between 0 and 7 inclusive)");
             int row = rowScan.nextInt();
 
@@ -20,17 +20,19 @@ public class Game {
             playerTurn(opponent, zeroBoard, row, col);
             oppoTurn(player, zeroBoard);
         }
+        if (opponent.evilBoard.board.equals(zeroBoard.board)) {
+            System.out.println("You win!");
+        } else {
+            System.out.println("You lose!");
+        }
     }
 
     public static void playerTurn(Opponent opponent, Board zeroBoard, int row, int col) {
         if (opponent.evilBoard.board[row][col] != 0) {
             System.out.println("Hit!");
             opponent.evilBoard.board[row][col] = 0;
-            if (opponent.evilBoard.board.equals(zeroBoard.board)) {
-                System.out.println("You win!");
-            }
         } else {
-            System.out.println("Miss!");
+            System.out.println("Miss!" + "\n");
         }
         opponent.evilBoard.printBoard();
     }
@@ -44,11 +46,8 @@ public class Game {
         if (player.playerBoard.board[row][col] != 0) {
             System.out.println("You're hit!");
             player.playerBoard.board[row][col] = 0;
-            if (player.playerBoard.board.equals(zeroBoard.board)) {
-                System.out.println("Opponent wins!");
-            }
         } else {
-            System.out.println("Opponent missed!");
+            System.out.println("Opponent missed!" + "\n");
         }
         player.playerBoard.printBoard();
     }
