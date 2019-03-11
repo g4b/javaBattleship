@@ -4,6 +4,10 @@ import java.util.Random;
 public class Game {
 
     public static void main (String[] args) {
+        System.out.println("Welcome to Battleship. You will be asked to guess the row and column of a ship on your oppon" +
+                "ent's board, after which they will make a random guess on your board. The game will end if either board" +
+                " is empty. Good luck!");
+
         Player player = new Player();
         Opponent opponent = new Opponent();
         Board zeroBoard = new Board();
@@ -34,7 +38,6 @@ public class Game {
         } else {
             System.out.println("Miss!" + "\n");
         }
-        opponent.evilBoard.printBoard();
     }
 
     public static void oppoTurn(Player player, Board zeroBoard) {
