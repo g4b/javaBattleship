@@ -13,7 +13,7 @@ public class Game {
         Board zeroBoard = new Board();
         Scanner rowScan = new Scanner(System.in);
 
-        while (!opponent.evilBoard.board.equals(zeroBoard.board) || !player.playerBoard.board.equals(zeroBoard.board)) {
+        while (!(opponent.evilBoard.board.equals(zeroBoard.board) || player.playerBoard.board.equals(zeroBoard.board))) {
             System.out.println("Guess a row (between 0 and 7 inclusive)");
             int row = rowScan.nextInt();
 
